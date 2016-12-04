@@ -1,0 +1,43 @@
+<div class="container">
+    <h1>Ingresar nuevo usuario</h1>
+    <form [formGroup]="Formulario" >
+      <div class="form-group">
+        <label for="nombre">Nombre</label>
+        <input type="text" 
+               class="form-control" 
+               id="nombre" 
+               formControlName="nombre" >
+      </div>
+ <!--+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++-->     
+      <div class="form-group">
+        <label for="usrname">Nombre usuario</label>
+        <input type="text" 
+               class="form-control" 
+               id="usrname" 
+               formControlName="usrname" >
+      </div>
+ <!--+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++-->     
+      <div class="form-group">
+        <label for="email">Correo</label>
+        <input type="text" 
+               class="form-control" 
+               id="email" 
+               formControlName="email" >
+      </div>
+ <!--+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++-->     
+      <div class="form-group">
+        <label for="tel">Teléfono</label>
+        <input type="text" 
+               class="form-control" 
+               id="tel" 
+               formControlName="tel" >
+      </div>
+ <!--+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++-->     
+      <button type="submit" class="btn btn-default"(click)="Enviar()">Enviar</button>
+    </form>
+</div>
+    <p>Value: {{ Formulario.value | json }}</p>
+    <p>Validation Nombre: {{ Formulario.controls.nombre.status }}</p>
+    <p>Validation Usuario: {{ Formulario.controls.usrname.status }}</p>
+    <p>Validation Correo: {{ Formulario.controls.email.status }}</p>
+    <p>Validation Telefono: {{ Formulario.controls.tel.status }}</p>

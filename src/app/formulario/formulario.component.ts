@@ -1,9 +1,8 @@
 import { Component, Inject } from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import { Httpservicio } from './../httpservicio.service';
-import {Router} from '@angular/router'
 
-import {DatosServicio} from './datos.service'
+
 
 @Component({
   selector: 'app-formulario',
@@ -17,9 +16,12 @@ export class FormularioComponent  {
   Indice:number;
   StaticPhone:string;
   PhoneBind:string;
-  habForm:boolean=true;
 
-  constructor(@Inject(FormBuilder) fb: FormBuilder,private httpservicio:Httpservicio,private rutas:Router,private ServicioDatos:DatosServicio) {
+  habForm:boolean=true;
+  habNuevoUsuario:boolean=false;
+  DatosRecibidos:Object;
+
+  constructor(@Inject(FormBuilder) fb: FormBuilder,private httpservicio:Httpservicio) {
     this.PhoneBind="";
     this.StaticPhone="";
     this.Formulario = fb.group({
@@ -51,8 +53,13 @@ export class FormularioComponent  {
 
   CargaExitosa(aux :string){ 
     console.log(aux)
-    this.rutas.navigate(['nuevo']);
-    this.ServicioDatos.setObjeto(aux);
+    this.DatosRecibidos=aux;  
+    this.habNuevoUsuario=true; 
+ 
+  }
+  Refrescar(){
+    this.habNuevoUsuario=false; 
+    this.Formulario.reset();
   }
   onKey(){ 
       this.Indice=this.PhoneBind.length;

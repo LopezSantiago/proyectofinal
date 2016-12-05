@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container" *ngIf="!habNuevoUsuario">
     <h1>Ingresar nuevo usuario</h1>
     <form [formGroup]="Formulario">
       <div class="form-group">
@@ -52,4 +52,42 @@
       <button type="submit" class="btn btn-primary btn-lg"(click)="Enviar()">Enviar</button>
     </form>
 </div>
-    <router-outlet></router-outlet>
+
+<div class="jumbotron" *ngIf="habNuevoUsuario">
+<h1 class="tituloNuevoUsuario" align="center">Haz creado un nuevo Usuario</h1>
+<div class="container">
+ <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Item</th>
+        <th>Detalle</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Nombre</td>
+        <td>{{DatosRecibidos.nombre}}</td>
+      </tr>
+      <tr>
+        <td>Usuario</td>
+        <td>{{DatosRecibidos.usrname}}</td>
+      </tr>
+      <tr>
+        <td>Correo</td>
+        <td>{{DatosRecibidos.email}}</td>
+      </tr>
+      <tr>
+        <td>Teléfono</td>
+        <td>{{DatosRecibidos.tel}}</td>
+      </tr>
+       <tr>
+        <td>Id asignado</td>
+        <td>{{DatosRecibidos.id}}</td>
+      </tr>
+    </tbody>
+     <button  type="submit" class="btn btn-primary btn-lg"(click)="Refrescar()">Ingresar Nuevo</button>
+  </table>
+</div>
+
+</div>
+

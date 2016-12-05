@@ -1,20 +1,27 @@
 <div class="container">
     <h1>Ingresar nuevo usuario</h1>
-    <form [formGroup]="Formulario" >
+    <form [formGroup]="Formulario">
       <div class="form-group">
         <label for="nombre">Nombre</label>
+        <span class="Advertencia">*</span>
         <input type="text" 
                class="form-control" 
                id="nombre" 
                formControlName="nombre" >
+        <div *ngIf="Formulario.controls.nombre.status=='INVALID' && !habForm"  
+          class="alert alert-danger">Este campo es obligatorio</div>
+               
       </div>
  <!--+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++-->     
-      <div class="form-group">
+        <div class="form-group">
         <label for="usrname">Nombre usuario</label>
+        <span class="Advertencia">*</span>
         <input type="text" 
                class="form-control" 
                id="usrname" 
                formControlName="usrname" >
+      <div *ngIf="Formulario.controls.usrname.status=='INVALID' && !habForm"  
+      class="alert alert-danger">Este campo es obligatorio</div>
       </div>
  <!--+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++-->     
       <div class="form-group">
@@ -24,20 +31,25 @@
                id="email" 
                formControlName="email" >
       </div>
+      <div *ngIf="Formulario.controls.email.status=='INVALID' && !habForm"  
+      class="alert alert-danger">El correo debe tener un formato válido</div>
+      
  <!--+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++-->     
       <div class="form-group">
         <label for="tel">Teléfono</label>
         <input type="text" 
                class="form-control" 
                id="tel" 
-               formControlName="tel" >
+               formControlName="tel" 
+               [(ngModel)]="PhoneBind" 
+               (keydown)="onKey()"     
+               (keyup)="offKey()"                        
+               >
       </div>
+      <div *ngIf="Formulario.controls.tel.status=='INVALID' && !habForm"  
+      class="alert alert-danger">Es necesario que sea mayor a 6 digitos</div>
  <!--+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++-->     
-      <button type="submit" class="btn btn-default"(click)="Enviar()">Enviar</button>
+      <button type="submit" class="btn btn-primary btn-lg"(click)="Enviar()">Enviar</button>
     </form>
 </div>
-    <p>Value: {{ Formulario.value | json }}</p>
-    <p>Validation Nombre: {{ Formulario.controls.nombre.status }}</p>
-    <p>Validation Usuario: {{ Formulario.controls.usrname.status }}</p>
-    <p>Validation Correo: {{ Formulario.controls.email.status }}</p>
-    <p>Validation Telefono: {{ Formulario.controls.tel.status }}</p>
+    <router-outlet></router-outlet>

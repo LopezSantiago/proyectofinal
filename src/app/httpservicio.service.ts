@@ -13,7 +13,7 @@ export class Httpservicio {
     const cuerpo=JSON.stringify(user)
     const Cabecera=new Headers();
     Cabecera.append('Content-Type','application/json');
-    return this.http.post('https://jsonplaceholder.typicode.com/post',
+    return this.http.post('https://jsonplaceholder.typicode.com/posts',
     cuerpo,{headers:Cabecera}).map((datos:Response)=>datos.json());
   }
 
